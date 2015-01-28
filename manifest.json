@@ -1,0 +1,40 @@
+{
+    "name": "ProfileViewer",
+    "version": "0.0.4",
+    "manifest_version": 2,
+    "minimum_chrome_version": "26",
+    "description": "A minimal tab opener for Chrome.",
+
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "permissions": [
+        "tabs",
+        "http://www.linkedin.com/*",
+        "https://www.linkedin.com/*"
+    ],
+    "browser_action": {
+        "default_icon": "images/icon.png",
+        "default_title": "Profile Viewer for LinkedIn",
+        "default_popup": "popup.html"
+    },
+    "content_scripts":[{
+        "matches":["http://www.linkedin.com/*", "https://www.linkedin.com/*"],
+        "js":[
+            "lib/utils.js",
+            "lib/jquery-2.1.1.min.js",
+            "js/profileviewer.js"
+        ],
+        "all_frames":false,
+        "run_at": "document_end"
+    }],
+    "web_accessible_resources":[
+        "css/*",
+        "js/*",
+        "lib/*",
+        "images/*"
+    ]
+}
